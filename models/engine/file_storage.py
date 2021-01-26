@@ -71,16 +71,10 @@ class FileStorage:
 
     def get(self, cls, id):
         """ Task 3 """
-        if not(id):
-            return None
-        for obj in self.all(cls).values():
-            if obj.id is id:
-                return obj
+        if self.all(cls)[str(cls.__name__)+"."+id]:
+            return self.all(cls)[str(cls.__name__)+"."+id]
         return None
 
     def count(self, cls=None):
         """ Task 3 """
-        count = 0
-        for obj in self.all(cls):
-            count += 1
-        return count
+        return len(self.all(cls))
