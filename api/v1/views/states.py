@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Task 4 """
-from flask import Flask, Blueprint, jsonify, request, abort
+from flask import Flask, Blueprint, jsonify, request, abort, make_response
 from api.v1.views import app_views
 from models import storage
 from models.state import State
@@ -50,6 +50,18 @@ def update_State(state_id=None):
     for key, value in req.items():
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(to_update, key, value)
-    
+
     storage.save()
     return jsonify(to_update.to_dict())
+
+
+@app_views.route('/states/', methods=['POST'], strict_slashes=False)
+def post_state():
+    """create a new state"""
+    if not request.get_json():
+        return make_response(jsonify({'error': 'Not a JSON'}), 400)
+    if "name" not in request.get_json():
+        return make_response(jsonify({'error': 'Missing name'}), 400)
+    new_state = State(**request.get_json())
+    new_state.save()
+    return make_response(jsonify(new_state.to_dict()), 201)
