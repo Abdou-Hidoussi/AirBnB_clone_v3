@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ Task 4 """
-from flask import Flask, Blueprint, jsonify, request
+from flask import Flask, Blueprint, jsonify, request, abort
 from api.v1.views import app_views
 from models import storage
 
 
-@app_views.route('/states')
+@app_views.route('/states', strict_slashes=False)
 def all_State():
     """ Task 7 """
     ls = []
@@ -14,7 +14,7 @@ def all_State():
     return jsonify(ls)
 
 
-@app_views.route('/states/<state_id>')
+@app_views.route('/states/<state_id>', strict_slashes=False)
 def retrive_State(state_id):
     """ Task 7 """
     if state_id is not None:
