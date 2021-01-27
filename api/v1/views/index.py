@@ -9,6 +9,7 @@ def status():
     if request.method == 'GET':
         return jsonify({"status": "OK"})
 
+
 @app_views.route('/stats')
 def stat_count():
     """ Task 5 """
