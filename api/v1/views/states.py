@@ -33,3 +33,23 @@ def delete_State(state_id):
         storage.save()
         return jsonify({})
     abort(404)
+
+
+@app_views.route('/states/<state_id>', methods=['PUT'])
+def update_State(state_id=None):
+    """ Task 7 """
+    to_update = storage.get("State", state_id)
+    req = request.get_json()
+
+    if to_update is None:
+        abort(404)
+
+    if req is None:
+        abort(400)
+
+    for key, value in req.items():
+        if key not in ['id', 'created_at', 'updated_at']:
+            setattr(to_update, key, value)
+    
+    storage.save()
+    return jsonify(to_update.to_dict())
