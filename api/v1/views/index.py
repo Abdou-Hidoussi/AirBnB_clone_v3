@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 """ Task 4 """
+from flask import Flask, Blueprint, jsonify, request
 from api.v1.views import app_views
-from flask import jsonify
-from models import storage
 
 
-@app_views.route('/status')
-def all_states():
-    """ Task 4 """
-    return jsonify(status="OK")
+@app_views.route('/status', methods=['GET'])
+def status():
+    if request.method == 'GET':
+        return jsonify({"status": "OK"})

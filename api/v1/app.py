@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Task 4 """
-from flask import Flask
+from flask import Flask, Blueprint
 from models import storage
 from api.v1.views import app_views
 from os import getenv
