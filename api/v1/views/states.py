@@ -5,7 +5,7 @@ from api.v1.views import app_views
 from models import storage
 
 
-@app_views.route('/states', methods=['GET'])
+@app_views.route('/states')
 def all_State():
     """ Task 7 """
     ls = []
@@ -14,7 +14,7 @@ def all_State():
     return jsonify(ls)
 
 
-@app_views.route('/states/<state_id>', methods=['GET'])
+@app_views.route('/states/<state_id>')
 def retrive_State(state_id):
     """ Task 7 """
     if state_id is not None:
