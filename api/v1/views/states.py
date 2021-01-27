@@ -12,3 +12,13 @@ def retrive_State():
     for st in storage.all("State").values():
         ls.append(st.to_dict())
     return jsonify(ls)
+
+
+@app_views.route('/states/<state_id>', methods=['GET'])
+def findSt(state_id):
+    """ Task 7 """
+    if state_id is not None:
+        for st in storage.all("State").values():
+            if st.id is state_id:
+                return jsonify(st.to_dict())
+    abort(404)
