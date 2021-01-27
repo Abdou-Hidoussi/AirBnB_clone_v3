@@ -9,7 +9,7 @@ from models.state import State
 
 @app_views.route('/states/<string:state_id>/cities', methods=['GET'],
                  strict_slashes=False)
-def get_cities_by_state(state_id):
+def get_cities(state_id):
     """get city information for all cities in a specified state"""
     state = storage.get("State", state_id)
     if state is None:
@@ -29,7 +29,9 @@ def retrive_City(city_id):
     abort(404)
 
 
-def create_city(state_id):
+@app_views.route('/states/<string:state_id>/cities/', methods=['POST'],
+                 strict_slashes=False)
+def post_city(state_id):
     """Task 7 create city in state"""
     state = storage.get("State", state_id)
     if state is None:
@@ -45,7 +47,9 @@ def create_city(state_id):
     return make_response(jsonify(city.to_dict()), 201)
 
 
-def update_city(city_id):
+@app_views.route('/cities/<string:city_id>', methods=['PUT'],
+                 strict_slashes=False)
+def put_city(city_id):
     """update a city"""
     city = storage.get("City", city_id)
     if city is None:
@@ -57,3 +61,15 @@ def update_city(city_id):
             setattr(city, attr, val)
     city.save()
     return jsonify(city.to_dict())
+
+
+@app_views.route('/cities/<string:city_id>', methods=['DELETE'],
+                 strict_slashes=False)
+def delete_city(city_id):
+    """deletes a city based on its city_id"""
+    city = storage.get("City", city_id)
+    if city is None:
+        abort(404)
+    city.delete()
+    storage.save()
+    return (jsonify({}))
