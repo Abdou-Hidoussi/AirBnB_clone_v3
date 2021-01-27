@@ -18,11 +18,10 @@ def all_State():
 @app_views.route('/states/<state_id>', strict_slashes=False)
 def retrive_State(state_id):
     """ Task 7 """
-    if state_id is not None:
-        for st in storage.all("State").values():
-            if st.id is state_id:
-                return jsonify(st.to_dict())
-    abort(404)
+    state = storage.get("State", state_id)
+    if state is None:
+        abort(404)
+    return jsonify(state.to_dict())
 
 
 @app_views.route('/states/<state_id>', methods=['DELETE'])
