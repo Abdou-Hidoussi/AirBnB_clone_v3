@@ -78,9 +78,9 @@ class DBStorage:
     def get(self, cls, id):
         """ Task 3 """
         if (cls is not None) or (id is not None):
-            key = str(cls.__name__)+"."+id
+            key = "{}.{}".format(cls, id)
             if key in self.all(cls).keys():
-                return self.all(cls)[str(cls.__name__)+"."+id]
+                return self.all(cls)[key]
         return None
 
     def count(self, cls=None):
