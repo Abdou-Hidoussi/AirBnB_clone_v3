@@ -71,7 +71,8 @@ class FileStorage:
 
     def get(self, cls, id):
         """ Task 3 """
-        if self.all(cls)[str(cls.__name__)+"."+id]:
+        key = str(cls.__name__)+"."+id
+        if key in self.all(cls).keys():
             return self.all(cls)[str(cls.__name__)+"."+id]
         return None
 
