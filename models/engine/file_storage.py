@@ -76,5 +76,5 @@ class FileStorage:
         return None
 
     def count(self, cls=None):
-        """ Task 3 """
+        """ Task 3 :"""
         return len(self.all(cls))
