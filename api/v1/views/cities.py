@@ -27,7 +27,7 @@ def retrive_City(city_id):
         if ct.id == city_id:
             return jsonify(ct.to_dict())
     abort(404)
-    
+
 
 def create_city(state_id):
     """Task 7 create city in state"""
