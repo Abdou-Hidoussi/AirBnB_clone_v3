@@ -2,6 +2,7 @@
 """ Task 4 """
 from flask import Flask, Blueprint, jsonify, request
 from api.v1.views import app_views
+from models import storage
 
 
 @app_views.route('/status', methods=['GET'])
@@ -10,7 +11,7 @@ def status():
         return jsonify({"status": "OK"})
 
 
-@app_views.route('/stats')
+@app_views.route('/stats', methods=['GET'])
 def stat_count():
     """ Task 5 """
     count_stats = {
