@@ -10,7 +10,7 @@ from models.state import State
 @app_views.route('/states/<string:state_id>/cities', methods=['GET'],
                  strict_slashes=False)
 def get_cities(state_id):
-    """get city information for all cities in a specified state"""
+    """task 8 get city from specific state"""
     state = storage.get("State", state_id)
     if state is None:
         abort(404)
@@ -66,7 +66,7 @@ def put_city(city_id):
 @app_views.route('/cities/<string:city_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_city(city_id):
-    """deletes a city based on its city_id"""
+    """task 8 deletes a city from it's id"""
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
