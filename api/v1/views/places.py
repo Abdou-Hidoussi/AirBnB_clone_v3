@@ -81,7 +81,7 @@ def put_Place(place_id):
                  strict_slashes=False)
 def delete_Place(place_id):
     """task 10 deletes a place from it's id"""
-    place = storage.get("Place", city_id)
+    place = storage.get("Place", place_id)
     if place is None:
         abort(404)
     place.delete()
