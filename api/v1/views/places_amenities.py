@@ -27,6 +27,7 @@ def get_amenities(place_id):
         amenities.append(am.to_dict())
     return jsonify(amenities)
 
+
 @app_views.route('/places/<string:place_id>/amenities/<string:amenity_id>',
                  methods=['DELETE'], strict_slashes=False)
 def delete_place_amenity(place_id, amenity_id):
