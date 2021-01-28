@@ -130,5 +130,5 @@ class TestFileStorage(unittest.TestCase):
         state = State()
         storage.new(state)
         storage.save()
-        stateI = storage.get(State, state.id)
+        stateI = storage.get("State", state.id)
         self.assertIs(state, stateI)
