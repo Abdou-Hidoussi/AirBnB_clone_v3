@@ -19,7 +19,6 @@ class TestBaseModelDocs(unittest.TestCase):
         """Set up for docstring tests"""
         self.base_funcs = inspect.getmembers(BaseModel, inspect.isfunction)
 
-
     def test_module_docstring(self):
         """Test for the existence of module docstring"""
         self.assertIsNot(module_doc, None,
@@ -70,7 +69,6 @@ class TestBaseModel(unittest.TestCase):
                 self.assertIs(type(inst.__dict__[attr]), typ)
         self.assertEqual(inst.name, "Holberton")
         self.assertEqual(inst.number, 89)
-
 
     def test_uuid(self):
         """Test that id is a valid uuid"""
