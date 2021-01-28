@@ -51,7 +51,6 @@ def post_Place(city_id):
 
     if 'name' not in kwargs:
         abort(400, "Missing name")
-    
 
     kwargs['city_id'] = cities.id
 
