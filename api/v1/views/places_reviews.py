@@ -6,8 +6,7 @@ from models import storage
 from models.city import City
 from models.place import Place
 from models.user import User
-from models.reviews import Reviews
-
+from models.review import Review
 
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET'],
@@ -18,8 +17,8 @@ def get_review(place_id):
     if places is None:
         abort(404)
     reviews = []
-    for reviews in places.reviews:
-        reviews.append(place.to_dict())
+    for rev in places.reviews:
+        reviews.append(rev.to_dict())
     return jsonify(reviews)
 
 
@@ -66,7 +65,7 @@ def post_Review(place_id):
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'],
                  strict_slashes=False)
-def put_Place(review_id):
+def put_review(review_id):
     """update a review"""
     rev = storage.get("Review", review_id)
     if rev is None:
