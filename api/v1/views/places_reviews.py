@@ -50,9 +50,6 @@ def post_Review(place_id):
     if not user:
         abort(404)
 
-    if 'name' not in kwargs:
-        abort(400, "Missing name")
-
     if 'text' not in kwargs:
         abort(400, "Missing text")
 
