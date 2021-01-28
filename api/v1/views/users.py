@@ -49,7 +49,7 @@ def update_User(user_id=None):
         abort(400)
 
     for key, value in req.items():
-        if key not in ['id', 'created_at', 'updated_at']:
+        if key not in ['id', 'created_at', 'updated_at', 'email']:
             setattr(to_update, key, value)
 
     storage.save()
