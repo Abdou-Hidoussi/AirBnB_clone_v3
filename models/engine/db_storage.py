@@ -77,7 +77,7 @@ class DBStorage:
 
     def get(self, cls, id):
         """ Task 3 """
-        if (cls is not None) and (id is not None):
+        if id:
             for obj in self.all(cls).values():
                 if obj.id == id:
                     return obj
@@ -85,4 +85,6 @@ class DBStorage:
 
     def count(self, cls=None):
         """ Task 3 """
-        return len(self.all(cls))
+        if cls:
+            return len(self.all(cls))
+        return len(self.all())
